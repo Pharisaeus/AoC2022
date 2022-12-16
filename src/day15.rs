@@ -1,7 +1,6 @@
 use std::cmp::max;
 use std::collections::HashSet;
 use std::fs::read_to_string;
-use std::panic::resume_unwind;
 use itertools::Itertools;
 use regex::Regex;
 
