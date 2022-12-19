@@ -233,6 +233,6 @@ fn part2(blueprints: &Vec<Blueprint>) -> i32 {
 pub(crate) fn solve() {
     let content = read_to_string("19.txt").unwrap();
     let blueprints = parse_blueprints(&content);
-    // println!("{}", part1(&blueprints));
+    println!("{}", part1(&blueprints));
     println!("{}", part2(&blueprints));
 }
