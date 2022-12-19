@@ -40,7 +40,7 @@ impl Blueprint {
         }
     }
     fn produce_ore_robot(&self, state: &State) -> Option<(State, i8)> {
-        return if (state.ore_robots > 3) | (state.ore > 10) {
+        return if (state.ore_robots > 3) | (state.ore > 4) {
             None
         } else if state.ore >= self.ore_ore {
             let mut s = State::make_from(&state.progress_one_round());
@@ -62,7 +62,9 @@ impl Blueprint {
     }
 
     fn produce_clay_robot(&self, state: &State) -> Option<(State, i8)> {
-        if state.ore >= self.clay_ore {
+        return if (state.ore_robots > 6) | (state.clay > 25) {
+            None
+        } else if state.ore >= self.clay_ore {
             let mut s = State::make_from(&state.progress_one_round());
             s.ore -= self.clay_ore;
             s.clay_robots += 1;
@@ -78,11 +80,13 @@ impl Blueprint {
             s.ore -= self.clay_ore;
             s.clay_robots += 1;
             Some((s, rounds))
-        }
+        };
     }
 
     fn produce_obsidian_robot(&self, state: &State) -> Option<(State, i8)> {
-        if (state.ore >= self.obsidian_ore) & (state.clay >= self.obsidian_clay) {
+        return if (state.obsidian_robots > 6) | (state.obsidian > 25) {
+            None
+        } else if (state.ore >= self.obsidian_ore) & (state.clay >= self.obsidian_clay) {
             let mut s = State::make_from(&state.progress_one_round());
             s.ore -= self.obsidian_ore;
             s.clay -= self.obsidian_clay;
@@ -103,7 +107,7 @@ impl Blueprint {
             Some((s, rounds))
         } else {
             None
-        }
+        };
     }
 
     fn produce_geode_robot(&self, state: &State) -> Option<(State, i8)> {
@@ -213,7 +217,6 @@ fn part1(blueprints: &Vec<Blueprint>) -> i32 {
     let mut res: i32 = 0;
     for i in 0..blueprints.len() {
         let result = find(blueprints.get(i).unwrap(), &24, &State::default());
-        println!("{}:{}", i, result);
         res += (i + 1) as i32 * result as i32;
     }
     res
@@ -224,7 +227,6 @@ fn part2(blueprints: &Vec<Blueprint>) -> i32 {
     let mut res: i32 = 1;
     for i in 0..3 {
         let result = find(blueprints.get(i).unwrap(), &32, &State::default());
-        println!("{}:{}", i, result);
         res *= result as i32
     }
     res
