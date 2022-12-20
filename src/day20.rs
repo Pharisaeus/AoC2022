@@ -1,6 +1,5 @@
 use std::collections::VecDeque;
 use std::fs::read_to_string;
-use std::ops::Index;
 use itertools::Itertools;
 
 fn encrypt(data: &Vec<i64>, rounds: i8) -> Vec<i64> {
