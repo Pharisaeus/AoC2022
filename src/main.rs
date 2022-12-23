@@ -1,5 +1,3 @@
-extern crate core;
-
 mod day1;
 mod day2;
 mod day3;
@@ -21,6 +19,7 @@ mod day18;
 mod day19;
 mod day20;
 mod day22;
+mod day23;
 
 fn main() {
     // day1::solve();
@@ -43,5 +42,6 @@ fn main() {
     // day18::solve();
     // day19::solve();
     // day20::solve();
-    day22::solve();
+    // day22::solve();
+    day23::solve();
 }
