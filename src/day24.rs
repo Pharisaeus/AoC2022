@@ -82,7 +82,7 @@ impl Board {
             .collect_vec();
         let blizzard_positions: Vec<HashSet<(i32, i32)>> = vec![initial_blizzards.iter().map(|b| (b.row, b.col)).collect()];
         let start = (0, 1);
-        let end = (height as i32 - 1, width as i32 - 1);
+        let end = (height as i32 - 1, width as i32 - 2);
         Board {
             board,
             width,
@@ -184,11 +184,9 @@ fn part1(board: &mut Board) -> usize {
 }
 
 fn part2(board: &mut Board) -> usize {
-    let s = (0, 1);
-    let e = (board.height as i32 - 1, board.width as i32 - 2);
-    let there = board.bfs(s, e, 0);
-    let back = board.bfs(e, s, there);
-    board.bfs(s, e, back)
+    let there = board.bfs(board.start, board.end, 0);
+    let back = board.bfs(board.end, board.start, there);
+    board.bfs(board.start, board.end, back)
 }
 
 pub(crate) fn solve() {
