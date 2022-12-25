@@ -1,7 +1,5 @@
 use std::collections::HashSet;
 use std::fs::read_to_string;
-use std::hash::Hash;
-use std::mem::take;
 use itertools::Itertools;
 
 fn parse_input(content: &str) -> Vec<(i32, i32, i32)> {

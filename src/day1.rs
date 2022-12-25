@@ -1,5 +1,5 @@
 use std::fs;
-use itertools::{Itertools, sorted};
+use itertools::sorted;
 
 fn elf_calories(elf: &Vec<i32>) -> i32 {
     elf.iter().sum()

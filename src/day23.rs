@@ -50,8 +50,8 @@ impl Board {
             .enumerate()
             .flat_map(|(x, line)| line.chars()
                 .enumerate()
-                .filter(|(y, c)| *c == '#')
-                .map(move |(y, c)| (x as i32, y as i32))
+                .filter(|(_y, c)| *c == '#')
+                .map(move |(y, _c)| (x as i32, y as i32))
             ).collect();
         Board {
             positions,
@@ -59,10 +59,10 @@ impl Board {
         }
     }
     fn bounds(&self) -> (i32, i32, i32, i32) {
-        let sx = self.positions.iter().map(|(x, y)| x).min().unwrap();
-        let ex = self.positions.iter().map(|(x, y)| x).max().unwrap();
-        let sy = self.positions.iter().map(|(x, y)| y).min().unwrap();
-        let ey = self.positions.iter().map(|(x, y)| y).max().unwrap();
+        let sx = self.positions.iter().map(|(x, _y)| x).min().unwrap();
+        let ex = self.positions.iter().map(|(x, _y)| x).max().unwrap();
+        let sy = self.positions.iter().map(|(_x, y)| y).min().unwrap();
+        let ey = self.positions.iter().map(|(_x, y)| y).max().unwrap();
         (*sx, *ex, *sy, *ey)
     }
 
@@ -157,7 +157,7 @@ impl ToString for Board {
     }
 }
 
-fn part1(mut initial_board: Board) -> i32 {
+fn part1(initial_board: Board) -> i32 {
     let mut board = initial_board;
     for _ in 0..10 {
         board = board.play_round()
@@ -165,7 +165,7 @@ fn part1(mut initial_board: Board) -> i32 {
     board.score()
 }
 
-fn part2(mut initial_board: Board) -> i32 {
+fn part2(initial_board: Board) -> i32 {
     let mut round = 1;
     let mut board = initial_board;
     loop {

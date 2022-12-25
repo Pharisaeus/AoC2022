@@ -1,7 +1,4 @@
-use std::fmt::{Display, Formatter};
 use std::fs::read_to_string;
-use std::iter::Sum;
-use std::ops::Add;
 use itertools::Itertools;
 
 struct ElfNumber {

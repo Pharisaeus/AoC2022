@@ -1,9 +1,9 @@
 use std::collections::HashMap;
 use std::fs::read_to_string;
-use itertools::{all, Itertools};
+use itertools::Itertools;
 
 struct File {
-    name: String,
+    _name: String,
     size: i32,
 }
 
@@ -49,7 +49,7 @@ fn parse_listing(current_dir: &str, command: &str) -> Directory {
         .skip(1)
         .filter(|line| !line.starts_with("dir"))
         .map(|line| line.split_once(" ").unwrap())
-        .map(|(size, name)| File { size: size.parse().unwrap(), name: name.to_string() })
+        .map(|(size, name)| File { size: size.parse().unwrap(), _name: name.to_string() })
         .collect_vec();
     Directory {
         name: current_dir.to_string(),

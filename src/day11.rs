@@ -1,5 +1,5 @@
 use std::fs::read_to_string;
-use std::ops::{Add, Div};
+use std::ops::Div;
 use itertools::{Itertools, sorted};
 use regex::Regex;
 
@@ -120,12 +120,12 @@ fn play(mut monkeys: Monkeys, rounds: i64, reducer: &impl Fn(i64) -> i64) -> i64
 }
 
 fn part1(content: &String) -> i64 {
-    let mut monkeys = parse_input(&content);
+    let monkeys = parse_input(&content);
     play(monkeys, 20, &|x| x.div(3))
 }
 
 fn part2(content: &String) -> i64 {
-    let mut monkeys = parse_input(&content);
+    let monkeys = parse_input(&content);
     let d: i64 = monkeys.monkeys.iter().map(|x| x.divisor).product();
     play(monkeys, 10000, &|x| x % d)
 }

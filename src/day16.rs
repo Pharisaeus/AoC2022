@@ -24,9 +24,9 @@ fn floyd_warshall(graph: &HashMap<String, HashSet<String>>) -> HashMap<(&String,
     for &k in &nodes {
         for &i in &nodes {
             for &j in &nodes {
-                let existing = distances.get(&(i, j)).unwrap();
+                let existing = *distances.get(&(i, j)).unwrap();
                 let potential = distances.get(&(i, k)).unwrap() + distances.get(&(k, j)).unwrap();
-                distances.insert((i, j), min(*existing, potential));
+                distances.insert((i, j), min(existing, potential));
             }
         }
     }

@@ -1,8 +1,6 @@
 use std::cmp::Ordering;
-use std::fmt::{Display, Formatter, Write};
 use std::fs::read_to_string;
-use std::ops::Index;
-use itertools::{all, Itertools, sorted};
+use itertools::{Itertools, sorted};
 
 struct Entry {
     list: Option<Vec<Entry>>,

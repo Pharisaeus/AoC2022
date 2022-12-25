@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-use std::detect::__is_feature_detected::sha;
 use std::fs::read_to_string;
 use itertools::Itertools;
 
@@ -117,7 +116,7 @@ impl Board {
     }
 
     fn new(moves: &Vec<char>, shapes: &Vec<Vec<(i64, i64)>>) -> Board {
-        let mut taken_spaces = HashSet::from_iter((0..7).map(|x| (x, 0)).collect_vec());
+        let taken_spaces = HashSet::from_iter((0..7).map(|x| (x, 0)).collect_vec());
         Board {
             taken_spaces,
             highest_point: 0,

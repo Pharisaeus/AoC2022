@@ -1,7 +1,6 @@
 use std::collections::HashSet;
 use std::fs::read_to_string;
 use itertools::Itertools;
-use regex::internal::Char;
 
 #[derive(Clone, Copy)]
 enum Direction {
@@ -76,7 +75,7 @@ impl Board {
             .enumerate()
             .flat_map(|(row, columns)| columns.iter()
                 .enumerate()
-                .filter(|(col, &c)| (c != '.') & (c != '#'))
+                .filter(|(_col, &c)| (c != '.') & (c != '#'))
                 .map(move |(col, c)| Blizzard::new(c, row as i32, col as i32))
             )
             .collect_vec();
@@ -92,28 +91,6 @@ impl Board {
             initial_blizzards,
             blizzard_positions,
         }
-    }
-
-    fn to_string_at(&self, minute: usize) -> String {
-        let positions = self.blizzard_positions.get(minute).unwrap();
-        let mut res = String::new();
-        for row in 0..self.height {
-            for col in 0..self.width {
-                if (row == 0) | (row == self.height - 1) | (col == 0) | (col == self.width - 1) {
-                    if self.is_wall(row, col) {
-                        res += "#";
-                    } else {
-                        res += ".";
-                    }
-                } else if positions.contains(&(row as i32, col as i32)) {
-                    res += "b"
-                } else {
-                    res += "."
-                }
-            }
-            res += "\n";
-        }
-        res
     }
 
     fn is_wall(&self, row: usize, col: usize) -> bool {

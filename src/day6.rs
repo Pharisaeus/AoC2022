@@ -1,5 +1,4 @@
 use std::fs::read_to_string;
-use std::ops::Index;
 use itertools::Itertools;
 
 fn all_unique(window: &[char]) -> bool {

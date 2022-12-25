@@ -10,7 +10,7 @@ fn simulate(operations: &Vec<&str>) -> Vec<i32> {
             add => {
                 let v: i32 = add.split_once(" ").unwrap().1.parse().unwrap();
                 register_history.push(last);
-                register_history.push((last + v));
+                register_history.push(last + v);
             }
         }
     }
@@ -34,6 +34,7 @@ fn part2(operations: &Vec<&str>) {
         }
         print!("{}", screen.get(pixel).unwrap())
     }
+    println!()
 }
 
 fn part1(operations: &Vec<&str>) -> i32 {

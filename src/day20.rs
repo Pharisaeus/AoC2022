@@ -12,7 +12,7 @@ fn encrypt(data: &Vec<i64>, rounds: i8) -> Vec<i64> {
             let &(_, value) = entry;
             let current_index = res.iter().position(|v| v == entry).unwrap();
             res.remove(current_index);
-            let shifts = (value % res.len() as i64);
+            let shifts = value % res.len() as i64;
             if shifts > 0 {
                 res.rotate_left(shifts.abs() as usize);
             } else {

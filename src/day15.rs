@@ -1,5 +1,4 @@
 use std::cmp::max;
-use std::collections::HashSet;
 use std::fs::read_to_string;
 use itertools::Itertools;
 use regex::Regex;
@@ -17,7 +16,7 @@ impl Position {
 
 struct Sensor {
     sensor: Position,
-    beacon: Position,
+    _beacon: Position,
     max_distance: i64,
 }
 
@@ -46,7 +45,7 @@ impl Sensor {
         let max_distance = sensor.distance(&beacon);
         Sensor {
             sensor,
-            beacon,
+            _beacon: beacon,
             max_distance,
         }
     }
@@ -121,11 +120,11 @@ fn part1(sensors: &Vec<Sensor>) -> i64 {
         if overlaps(&current, range) {
             current = (current.0, max(current.1, range.1))
         } else {
-            values += (current.1 - current.0);
+            values += current.1 - current.0;
             current = *range;
         }
     }
-    values += (current.1 - current.0);
+    values += current.1 - current.0;
     values
 }
 

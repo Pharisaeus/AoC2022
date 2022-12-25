@@ -140,7 +140,7 @@ impl Blueprint {
             .iter()
             .filter(|&x| x.is_some())
             .map(|x| x.as_ref().unwrap())
-            .filter(|(state, m)| m <= minutes)
+            .filter(|(_state, m)| m <= minutes)
             .map(|x| x.clone())
             .collect_vec()
     }

@@ -132,14 +132,12 @@ fn parse_data(data: &str) -> Vec<Vec<(i32, i32)>> {
 
 
 fn play(mut board: Board, next_move: fn(&Board, (i32, i32)) -> Option<(i32, i32)>) -> i32 {
-    println!("{}", board.to_string());
     loop {
         let mut pos = (0, 500);
         loop {
             let new_pos = next_move(&board, pos);
             match new_pos {
                 None => {
-                    println!("{}", board.to_string());
                     return board.added_sand;
                 }
                 Some(new_position) => {
@@ -155,11 +153,11 @@ fn play(mut board: Board, next_move: fn(&Board, (i32, i32)) -> Option<(i32, i32)
     }
 }
 
-fn part1(mut board: Board) -> i32 {
+fn part1(board: Board) -> i32 {
     play(board, Board::next_move)
 }
 
-fn part2(mut board: Board) -> i32 {
+fn part2(board: Board) -> i32 {
     play(board, Board::next_move_with_floor) + 1
 }
 

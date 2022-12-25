@@ -31,10 +31,7 @@ fn parse_stacks(content: &str) -> Vec<Vec<Option<char>>> {
 
 fn build_stacks(stacks_values: &Vec<Vec<Option<char>>>) -> Vec<Vec<char>> {
     let stacks_count = stacks_values.iter().map(|s| s.len()).max().unwrap();
-    let mut stacks: Vec<Vec<char>> = (0..stacks_count)
-        .into_iter()
-        .map(|idx| vec![])
-        .collect_vec();
+    let mut stacks: Vec<Vec<char>> = vec![vec![]; stacks_count];
     for row in stacks_values {
         for i in 0..row.len() {
             match row[i] {
